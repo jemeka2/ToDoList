@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Item Info</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body>
+<div th:replace="base :: navbar"></div>
+
+<h3>Item has been added to list</h3>
+
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4" th:object="${item}">
+        <img th:src="*{pic}" class="img-fluid rounded-start" alt="User Image">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title" th:inline="text">Item: [[${item.item}]]</h5>
+            <ul>
+              <li th:inline="text">Description: [[${item.description}]]</li>
+              <li th:inline="text">Due Date: [[${item.dueDate}]]</li>
+              <li>
+                Priority:
+                <div th:if="${item.priority}">
+                  Important <i class="bi bi-star"></i>
+                </div>
+                <div th:unless="${item.priority}">
+                  Not Important <i class="bi bi-x-square"></i>
+                </div>
+              </li>
+              <li>
+                Status:
+                <div th:if="${item.status}">
+                  Complete <i class="bi bi-check-circle"></i>
+                </div>
+                <div th:unless="${item.status}">
+                  Incomplete <i class="bi bi-cart-x"></i>
+                </div>
+              </li>
+            </ul>
+          <p class="card-text"><small class="text-muted">Last updated Now</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
